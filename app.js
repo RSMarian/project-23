@@ -67,11 +67,14 @@ function displayAlert(text, action) {
   }, 1000);
 }
 // set back to default
-function setBackToDefault(){
-  console.log('set back to default');
+function setBackToDefault() {
+  grocery.value = "";
+  editFlag = false;
+  editId = "";
+  submitBtn.textContent = "submit";
 }
 // ****** LOCAL STORAGE **********
-function addToLocalStorage(id,value){
-  console.log('added to local storage');
+function addToLocalStorage(id, value) {
+  console.log("added to local storage");
 }
 // ****** SETUP ITEMS **********
