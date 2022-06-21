@@ -14,6 +14,9 @@ let editID = "";
 // ****** EVENT LISTENERS **********
 // submit form
 form.addEventListener("submit", addItem);
+// clear items
+clearBtn.addEventListener('click', clearItems)
+
 
 // ****** FUNCTIONS **********
 function addItem(e) {
@@ -38,6 +41,10 @@ function addItem(e) {
         <i class="fas fa-trash"></i>
       </button>
     </div>`;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     // append child
     list.appendChild(element);
     // display alert
@@ -46,6 +53,15 @@ function addItem(e) {
     container.classList.add("show-container");
     // add to local storage
     addToLocalStorage(id, value);
+    // delete function
+    function deleteItem(e){
+      const element = e.currentTarget.parentElement.parentElement;
+      list.removeChild(element);
+    }
+    // edit function
+    function editItem(){
+      console.log('edit item');
+    }
     // set back to default
     setBackToDefault();
   } else if (value !== "" && editFlag) {
@@ -65,6 +81,18 @@ function displayAlert(text, action) {
     alert.textContent = "";
     alert.classList.remove(`alert-${action}`);
   }, 1000);
+}
+// clear items
+function clearItems(){
+  const items = document.querySelectorAll('.grocery-item');
+
+  if(items.length > 0){
+    items.forEach(function(item){
+      list.removeChild(item)
+    });
+  }
+  container.classList.remove('show-container');
+  displayAlert('empty list', "danger");
 }
 // set back to default
 function setBackToDefault() {
